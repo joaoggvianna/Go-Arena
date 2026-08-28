@@ -3,145 +3,321 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Go Arena — uma proposta de plataforma online para jogar, estudar e competir no jogo de Go." />
+  <meta
+    name="description"
+    content="Go Arena — uma proposta de plataforma online para jogar, estudar e competir no jogo de Go."
+  />
   <title>Go Arena — Jogue com intenção</title>
-  <style>
-    :root { --paper:#f3eee3; --ink:#1d1c18; --muted:#746d61; --line:#cbc1b2; --red:#a6432b; --wood:#c9924e; --white:#fffdf7; --max:1180px; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    html { scroll-behavior:smooth; }
-    body { font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; background:var(--paper); color:var(--ink); line-height:1.55; text-rendering:optimizeLegibility; }
-    a { color:inherit; text-decoration:none; }
-    button,a { -webkit-tap-highlight-color:transparent; }
-    .shell { width:min(calc(100% - 40px),var(--max)); margin-inline:auto; }
-    header { border-bottom:1px solid var(--line); background:var(--paper); }
-    .nav { min-height:72px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:24px; }
-    .brand { justify-self:start; font-size:.92rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
-    .nav-links { display:flex; gap:30px; font-size:.88rem; color:var(--muted); }
-    .nav-links a { position:relative; padding:8px 0; }
-    .nav-links a::after { content:""; position:absolute; left:0; right:100%; bottom:1px; height:1px; background:var(--ink); transition:right 180ms ease; }
-    .nav-links a:hover::after { right:0; }
-    .nav-side { justify-self:end; font-size:.82rem; color:var(--muted); }
-    .hero { min-height:760px; display:grid; grid-template-columns:1.15fr .85fr; align-items:center; gap:72px; padding:82px 0 96px; }
-    .hero-copy { align-self:end; padding-bottom:34px; }
-    .kicker { display:inline-block; margin-bottom:26px; font-size:.75rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--red); }
-    h1,h2,.serif { font-family:Georgia,"Times New Roman",serif; font-weight:400; }
-    h1 { max-width:760px; font-size:clamp(4.6rem,9.2vw,8.4rem); line-height:.88; letter-spacing:-.065em; }
-    h1 em { color:var(--red); font-weight:400; }
-    .hero-intro { max-width:620px; margin-top:34px; font-size:1.1rem; color:var(--muted); }
-    .hero-meta { display:flex; align-items:center; gap:18px; margin-top:34px; font-size:.83rem; color:var(--muted); }
-    .hero-meta::before { content:""; width:54px; height:1px; background:var(--ink); }
-    .board-stage { position:relative; min-height:590px; display:flex; align-items:center; justify-content:center; }
-    .board { position:relative; width:min(100%,470px); aspect-ratio:1; background:var(--wood); padding:9%; box-shadow:18px 26px 0 rgba(29,28,24,.08); transform:rotate(2.2deg); border:1px solid rgba(56,36,14,.32); }
-    .grid { position:relative; width:100%; height:100%; border:1px solid rgba(44,29,12,.68); background-image:linear-gradient(to right,transparent calc(50% - .5px),rgba(44,29,12,.55) calc(50% - .5px),rgba(44,29,12,.55) calc(50% + .5px),transparent calc(50% + .5px)),linear-gradient(to bottom,transparent calc(50% - .5px),rgba(44,29,12,.55) calc(50% - .5px),rgba(44,29,12,.55) calc(50% + .5px),transparent calc(50% + .5px)); background-size:12.5% 100%,100% 12.5%; }
-    .stone { position:absolute; width:10%; aspect-ratio:1; border-radius:50%; transform:translate(-50%,-50%); transition:transform 180ms ease; }
-    .board:hover .stone { transform:translate(-50%,-54%); }
-    .stone.black { background:#1b1b19; box-shadow:0 5px 7px rgba(0,0,0,.26); }
-    .stone.white { background:var(--white); border:1px solid rgba(0,0,0,.1); box-shadow:0 5px 7px rgba(0,0,0,.14); }
-    .s1{left:25%;top:25%}.s2{left:37.5%;top:25%}.s3{left:50%;top:25%}.s4{left:37.5%;top:37.5%}.s5{left:50%;top:37.5%}.s6{left:62.5%;top:50%}.s7{left:50%;top:62.5%}.s8{left:25%;top:62.5%}.s9{left:75%;top:37.5%}
-    section { padding:112px 0; }
-    .section-head { display:grid; grid-template-columns:180px 1fr; gap:54px; align-items:start; margin-bottom:70px; }
-    .section-index { font-size:.75rem; font-weight:700; color:var(--red); letter-spacing:.16em; text-transform:uppercase; padding-top:11px; }
-    .section-head h2 { max-width:820px; font-size:clamp(3rem,5vw,5.2rem); line-height:.98; letter-spacing:-.045em; }
-    .section-summary { max-width:650px; margin-top:24px; font-size:1.05rem; color:var(--muted); }
-    .idea { border-top:1px solid var(--line); }
-    .idea-lines { border-top:1px solid var(--line); }
-    .idea-row { display:grid; grid-template-columns:120px 1fr 1fr; gap:36px; padding:28px 0; border-bottom:1px solid var(--line); align-items:start; }
-    .idea-row .num { color:var(--red); font-family:Georgia,"Times New Roman",serif; font-size:1.4rem; }
-    .idea-row h3 { font-size:1.2rem; font-weight:650; }
-    .idea-row p { color:var(--muted); max-width:540px; }
-    .security { background:#e9dfcf; border-top:1px solid #c8b9a2; border-bottom:1px solid #c8b9a2; }
-    .security .section-head { margin-bottom:44px; }
-    .security-list { border-top:1px solid #b9aa94; }
-    .security-item { display:grid; grid-template-columns:.95fr 1.25fr 1fr; gap:42px; padding:30px 0; border-bottom:1px solid #b9aa94; }
-    .security-item h3 { font-family:Georgia,"Times New Roman",serif; font-size:1.85rem; font-weight:400; letter-spacing:-.02em; }
-    .security-item p { color:#5f594f; }
-    .where { font-size:.84rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--red); margin-bottom:8px; }
-    .security-scope { color:#433f38; font-size:.95rem; }
-    .security-note { max-width:780px; margin-top:34px; font-size:.9rem; color:#6b6257; }
-    .roadmap { border-top:1px solid var(--line); }
-    .timeline { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); }
-    .phase { min-height:210px; padding:26px 28px 30px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); display:flex; flex-direction:column; justify-content:space-between; }
-    .phase span { display:block; font-size:.74rem; font-weight:700; letter-spacing:.14em; color:var(--red); margin-bottom:34px; }
-    .phase h3 { font-family:Georgia,"Times New Roman",serif; font-size:1.5rem; font-weight:400; letter-spacing:-.02em; margin-bottom:10px; }
-    .phase p { font-size:.94rem; line-height:1.5; color:var(--muted); max-width:280px; }
-    .closing { padding-top:62px; padding-bottom:110px; }
-    .closing-grid { display:grid; grid-template-columns:1.35fr .65fr; gap:80px; align-items:end; border-top:1px solid var(--line); padding-top:48px; }
-    .closing h2 { font-size:clamp(3.2rem,7vw,7rem); line-height:.9; letter-spacing:-.06em; max-width:850px; }
-    .closing h2 span { color:var(--red); }
-    .closing aside { color:var(--muted); font-size:.95rem; padding-bottom:8px; }
-    footer { padding:28px 0 38px; border-top:1px solid var(--line); font-size:.82rem; color:var(--muted); }
-    .footer-row { display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
-    @media(max-width:900px){.nav{grid-template-columns:1fr auto}.nav-links{display:none}.nav-side{justify-self:end}.hero{grid-template-columns:1fr;min-height:auto;gap:32px}.hero-copy{padding-bottom:0}.board-stage{min-height:auto;padding-top:20px}.section-head{grid-template-columns:1fr;gap:14px}.idea-row{grid-template-columns:70px 1fr}.idea-row p{grid-column:2}.security-item{grid-template-columns:1fr;gap:12px}.timeline{grid-template-columns:repeat(2,1fr)}.closing-grid{grid-template-columns:1fr;gap:30px}}
-    @media(max-width:560px){.shell{width:min(calc(100% - 28px),var(--max))}section{padding:82px 0}h1{font-size:4rem}.hero{padding-top:58px}.hero-meta{align-items:flex-start}.idea-row{grid-template-columns:48px 1fr;gap:18px}.timeline{grid-template-columns:1fr}.phase{min-height:0;padding:22px 20px 24px}.phase span{margin-bottom:20px}.phase p{max-width:none}}
-  </style>
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header>
     <div class="shell nav">
       <a class="brand" href="#inicio">Go Arena</a>
+
       <nav class="nav-links" aria-label="Navegação principal">
         <a href="#ideia">A ideia</a>
         <a href="#seguranca">Segurança</a>
         <a href="#evolucao">Evolução</a>
       </nav>
+
       <div class="nav-side">Projeto conceitual / 2026</div>
     </div>
   </header>
+
   <main>
     <section class="shell hero" id="inicio">
       <div class="hero-copy">
         <span class="kicker">Plataforma online para Go</span>
-        <h1>Estratégia não precisa de <em>ruído.</em></h1>
-        <p class="hero-intro">Go Arena é uma proposta de plataforma para jogar, estudar e competir no Go com uma experiência mais clara, contemporânea e acessível para novos jogadores.</p>
-        <div class="hero-meta"><span>Começa simples: tabuleiro, regras e partidas.<br />Cresce com multiplayer, ranking e comunidade.</span></div>
+
+        <h1>
+          Estratégia não precisa de <em>ruído.</em>
+        </h1>
+
+        <p class="hero-intro">
+          Go Arena é uma proposta de plataforma para jogar, estudar e competir no Go
+          com uma experiência mais clara, contemporânea e acessível para novos jogadores.
+        </p>
+
+        <div class="hero-meta">
+          <span>Começa simples: tabuleiro, regras e partidas.<br />Cresce com multiplayer, ranking e comunidade.</span>
+        </div>
       </div>
+
       <div class="board-stage">
+
         <div class="board" aria-label="Ilustração de um tabuleiro de Go">
           <div class="grid">
-            <span class="stone black s1"></span><span class="stone white s2"></span><span class="stone black s3"></span><span class="stone white s4"></span><span class="stone black s5"></span><span class="stone black s6"></span><span class="stone white s7"></span><span class="stone black s8"></span><span class="stone white s9"></span>
+            <span class="stone black s1"></span>
+            <span class="stone white s2"></span>
+            <span class="stone black s3"></span>
+            <span class="stone white s4"></span>
+            <span class="stone black s5"></span>
+            <span class="stone black s6"></span>
+            <span class="stone white s7"></span>
+            <span class="stone black s8"></span>
+            <span class="stone white s9"></span>
           </div>
         </div>
       </div>
     </section>
+
     <section class="idea" id="ideia">
       <div class="shell">
-        <div class="section-head"><div class="section-index">01 / A ideia</div><div><h2>Um jogo antigo, tratado como produto digital atual.</h2><p class="section-summary">O objetivo não é reinventar o Go. É criar uma experiência online organizada, agradável e simples o suficiente para quem está começando — sem limitar quem quiser competir e evoluir.</p></div></div>
+        <div class="section-head">
+          <div class="section-index">01 / A ideia</div>
+
+          <div>
+            <h2>Um jogo antigo, tratado como produto digital atual.</h2>
+            <p class="section-summary">
+              O objetivo não é reinventar o Go. É criar uma experiência online organizada,
+              agradável e simples o suficiente para quem está começando — sem limitar quem
+              quiser competir e evoluir.
+            </p>
+          </div>
+        </div>
+
         <div class="idea-lines">
-          <article class="idea-row"><div class="num">01</div><h3>Jogar</h3><p>Um tabuleiro limpo, regras bem aplicadas e partidas sem distrações. O produto começa pelo essencial.</p></article>
-          <article class="idea-row"><div class="num">02</div><h3>Competir</h3><p>Multiplayer, matchmaking, rating e histórico entram depois, quando a base do jogo já estiver sólida.</p></article>
-          <article class="idea-row"><div class="num">03</div><h3>Evoluir</h3><p>Estatísticas, revisão de partidas e recursos educativos podem transformar o site em um ambiente de estudo, não apenas de disputa.</p></article>
+          <article class="idea-row">
+            <div class="num">01</div>
+            <h3>Jogar</h3>
+            <p>
+              Um tabuleiro limpo, regras bem aplicadas e partidas sem distrações.
+              O produto começa pelo essencial.
+            </p>
+          </article>
+
+          <article class="idea-row">
+            <div class="num">02</div>
+            <h3>Competir</h3>
+            <p>
+              Multiplayer, matchmaking, rating e histórico entram depois,
+              quando a base do jogo já estiver sólida.
+            </p>
+          </article>
+
+          <article class="idea-row">
+            <div class="num">03</div>
+            <h3>Evoluir</h3>
+            <p>
+              Estatísticas, revisão de partidas e recursos educativos podem transformar
+              o site em um ambiente de estudo, não apenas de disputa.
+            </p>
+          </article>
         </div>
       </div>
     </section>
+
     <section class="security" id="seguranca">
       <div class="shell">
-        <div class="section-head"><div class="section-index">02 / Arquitetura</div><div><h2>Os pilares do Well-Architected aplicados ao Go Arena.</h2><p class="section-summary">A arquitetura do projeto será orientada pelos seis pilares apresentados no AWS Well-Architected Framework: Segurança, Confiabilidade, Excelência operacional, Eficiência de desempenho, Otimização de custos e Sustentabilidade.</p></div></div>
-        <div class="security-list">
-          <article class="security-item"><h3>Segurança</h3><div><div class="where">No Go Arena</div><p class="security-scope">Contas, permissões, partidas, dados e infraestrutura.</p></div><p>O projeto adotará uma base de identidade com níveis de acesso e princípio do menor privilégio; rastreabilidade por logs de login, partidas e ações administrativas; proteção em múltiplas camadas; e avaliação periódica de riscos e vulnerabilidades.</p></article>
-          <article class="security-item"><h3>Confiabilidade</h3><div><div class="where">No Go Arena</div><p class="security-scope">Backend, banco de dados e partidas em andamento.</p></div><p>A aplicação deve se recuperar rapidamente de falhas e continuar funcionando mesmo diante de problemas temporários. Backups, recuperação de estado, monitoramento e redução de pontos únicos de falha serão considerados conforme o projeto evoluir.</p></article>
-          <article class="security-item"><h3>Excelência operacional</h3><div><div class="where">No Go Arena</div><p class="security-scope">Implantação, manutenção e acompanhamento do sistema.</p></div><p>O objetivo é manter um processo simples e repetível para implantar, atualizar e operar a plataforma. Logs, monitoramento, versionamento no GitHub e automatização gradual do deploy ajudam a detectar problemas e melhorar o sistema continuamente.</p></article>
-          <article class="security-item"><h3>Eficiência de desempenho</h3><div><div class="where">No Go Arena</div><p class="security-scope">API, partidas em tempo real e acesso aos dados.</p></div><p>Os recursos serão escolhidos de acordo com a demanda real. O foco é manter respostas rápidas nas jogadas e no matchmaking, escolher a tecnologia de banco adequada à carga de trabalho e utilizar cache apenas quando houver necessidade comprovada.</p></article>
-          <article class="security-item"><h3>Otimização de custos</h3><div><div class="where">No Go Arena</div><p class="security-scope">Hospedagem, banco de dados e serviços de infraestrutura.</p></div><p>O projeto começará com uma infraestrutura compatível com o MVP, evitando recursos superdimensionados. Custos e utilização deverão ser monitorados, recursos desnecessários evitados e serviços gerenciados considerados quando fizerem sentido técnico e financeiro.</p></article>
-          <article class="security-item"><h3>Sustentabilidade</h3><div><div class="where">No Go Arena</div><p class="security-scope">Uso de recursos computacionais e evolução da infraestrutura.</p></div><p>A aplicação buscará utilizar apenas os recursos necessários, evitando processamento e infraestrutura ociosos. Conforme o sistema crescer, novas opções de software e infraestrutura mais eficientes poderão ser adotadas para reduzir desperdício computacional.</p></article>
+        <div class="section-head">
+          <div class="section-index">02 / Arquitetura</div>
+
+          <div>
+            <h2>Os pilares do Well-Architected aplicados ao Go Arena.</h2>
+            <p class="section-summary">
+              A arquitetura do projeto será orientada pelos seis pilares apresentados no
+              AWS Well-Architected Framework: Segurança, Confiabilidade, Excelência operacional,
+              Eficiência de desempenho, Otimização de custos e Sustentabilidade.
+            </p>
+          </div>
         </div>
-        <p class="security-note">Estes pontos são diretrizes arquiteturais para a evolução do produto. Nesta versão, a landing page continua totalmente estática e não possui autenticação, banco de dados, partidas online ou infraestrutura de produção.</p>
+
+        <div class="security-list">
+          <article class="security-item">
+            <h3>Segurança</h3>
+
+            <div>
+              <div class="where">No Go Arena</div>
+              <p class="security-scope">
+                Contas, permissões, partidas, dados e infraestrutura.
+              </p>
+            </div>
+
+            <p>
+              O projeto adotará uma base de identidade com níveis de acesso e princípio do
+              menor privilégio; rastreabilidade por logs de login, partidas e ações
+              administrativas; proteção em múltiplas camadas; e avaliação periódica de riscos
+              e vulnerabilidades.
+            </p>
+          </article>
+
+          <article class="security-item">
+            <h3>Confiabilidade</h3>
+
+            <div>
+              <div class="where">No Go Arena</div>
+              <p class="security-scope">
+                Backend, banco de dados e partidas em andamento.
+              </p>
+            </div>
+
+            <p>
+              A aplicação deve se recuperar rapidamente de falhas e continuar funcionando
+              mesmo diante de problemas temporários. Backups, recuperação de estado,
+              monitoramento e redução de pontos únicos de falha serão considerados conforme
+              o projeto evoluir.
+            </p>
+          </article>
+
+          <article class="security-item">
+            <h3>Excelência operacional</h3>
+
+            <div>
+              <div class="where">No Go Arena</div>
+              <p class="security-scope">
+                Implantação, manutenção e acompanhamento do sistema.
+              </p>
+            </div>
+
+            <p>
+              O objetivo é manter um processo simples e repetível para implantar, atualizar
+              e operar a plataforma. Logs, monitoramento, versionamento no GitHub e
+              automatização gradual do deploy ajudam a detectar problemas e melhorar o
+              sistema continuamente.
+            </p>
+          </article>
+
+          <article class="security-item">
+            <h3>Eficiência de desempenho</h3>
+
+            <div>
+              <div class="where">No Go Arena</div>
+              <p class="security-scope">
+                API, partidas em tempo real e acesso aos dados.
+              </p>
+            </div>
+
+            <p>
+              Os recursos serão escolhidos de acordo com a demanda real. O foco é manter
+              respostas rápidas nas jogadas e no matchmaking, escolher a tecnologia de banco
+              adequada à carga de trabalho e utilizar cache apenas quando houver necessidade
+              comprovada.
+            </p>
+          </article>
+
+          <article class="security-item">
+            <h3>Otimização de custos</h3>
+
+            <div>
+              <div class="where">No Go Arena</div>
+              <p class="security-scope">
+                Hospedagem, banco de dados e serviços de infraestrutura.
+              </p>
+            </div>
+
+            <p>
+              O projeto começará com uma infraestrutura compatível com o MVP, evitando
+              recursos superdimensionados. Custos e utilização deverão ser monitorados,
+              recursos desnecessários evitados e serviços gerenciados considerados quando
+              fizerem sentido técnico e financeiro.
+            </p>
+          </article>
+
+          <article class="security-item">
+            <h3>Sustentabilidade</h3>
+
+            <div>
+              <div class="where">No Go Arena</div>
+              <p class="security-scope">
+                Uso de recursos computacionais e evolução da infraestrutura.
+              </p>
+            </div>
+
+            <p>
+              A aplicação buscará utilizar apenas os recursos necessários, evitando
+              processamento e infraestrutura ociosos. Conforme o sistema crescer, novas
+              opções de software e infraestrutura mais eficientes poderão ser adotadas para
+              reduzir desperdício computacional.
+            </p>
+          </article>
+        </div>
+
+        <p class="security-note">
+          Estes pontos são diretrizes arquiteturais para a evolução do produto. Nesta versão,
+          a landing page continua totalmente estática e não possui autenticação, banco de
+          dados, partidas online ou infraestrutura de produção.
+        </p>
       </div>
     </section>
+
     <section class="roadmap" id="evolucao">
       <div class="shell">
-        <div class="section-head"><div class="section-index">03 / Evolução</div><div><h2>Construir pouco. Validar cedo. Crescer com propósito.</h2><p class="section-summary">O projeto é dividido em etapas pequenas para que cada nova camada tenha uma justificativa técnica e funcional.</p></div></div>
+        <div class="section-head">
+          <div class="section-index">03 / Evolução</div>
+
+          <div>
+            <h2>Construir pouco. Validar cedo. Crescer com propósito.</h2>
+            <p class="section-summary">
+              O projeto é dividido em etapas pequenas para que cada nova camada tenha
+              uma justificativa técnica e funcional.
+            </p>
+          </div>
+        </div>
+
         <div class="timeline">
-          <article class="phase"><span>01</span><h3>Tabuleiro</h3><p>Primeira versão jogável, com tabuleiro 9×9 e interação local.</p></article>
-          <article class="phase"><span>02</span><h3>Regras</h3><p>Implementação das regras essenciais: captura, Ko, passagem de turno e pontuação.</p></article>
-          <article class="phase"><span>03</span><h3>Contas</h3><p>Cadastro, autenticação, perfis e armazenamento do histórico de partidas.</p></article>
-          <article class="phase"><span>04</span><h3>Multiplayer</h3><p>Partidas entre jogadores com sincronização do tabuleiro em tempo real.</p></article>
-          <article class="phase"><span>05</span><h3>Competição</h3><p>Matchmaking, sistema de rating e rankings para partidas competitivas.</p></article>
-          <article class="phase"><span>06</span><h3>Ecossistema</h3><p>Recursos sociais e de evolução: estudo de partidas, torneios, amigos e espectadores.</p></article>
+          <article class="phase">
+            <span>01</span>
+            <h3>Tabuleiro</h3>
+            <p>Primeira versão jogável, com tabuleiro 9×9 e interação local.</p>
+          </article>
+
+          <article class="phase">
+            <span>02</span>
+            <h3>Regras</h3>
+            <p>Implementação das regras essenciais: captura, Ko, passagem de turno e pontuação.</p>
+          </article>
+
+          <article class="phase">
+            <span>03</span>
+            <h3>Contas</h3>
+            <p>Cadastro, autenticação, perfis e armazenamento do histórico de partidas.</p>
+          </article>
+
+          <article class="phase">
+            <span>04</span>
+            <h3>Multiplayer</h3>
+            <p>Partidas entre jogadores com sincronização do tabuleiro em tempo real.</p>
+          </article>
+
+          <article class="phase">
+            <span>05</span>
+            <h3>Competição</h3>
+            <p>Matchmaking, sistema de rating e rankings para partidas competitivas.</p>
+          </article>
+
+          <article class="phase">
+            <span>06</span>
+            <h3>Ecossistema</h3>
+            <p>Recursos sociais e de evolução: estudo de partidas, torneios, amigos e espectadores.</p>
+          </article>
         </div>
       </div>
     </section>
-    <section class="closing"><div class="shell closing-grid"><h2>O objetivo é simples:<br />fazer uma boa jogada <span>por vez.</span></h2><aside>Go Arena é um projeto conceitual de software e portfólio. A proposta atual prioriza clareza de produto, arquitetura incremental e fundamentos de segurança desde o início.</aside></div></section>
+
+    <section class="closing">
+      <div class="shell closing-grid">
+        <h2>
+          O objetivo é simples:<br />
+          fazer uma boa jogada <span>por vez.</span>
+        </h2>
+
+        <aside>
+          Go Arena é um projeto conceitual de software e portfólio.
+          A proposta atual prioriza clareza de produto, arquitetura incremental
+          e fundamentos de segurança desde o início.
+        </aside>
+      </div>
+    </section>
   </main>
-  <footer><div class="shell footer-row"><span>Go Arena</span><span>Conceito de produto digital para o jogo de Go.</span></div></footer>
+
+  <footer>
+    <div class="shell footer-row">
+      <span>Go Arena</span>
+      <span>Conceito de produto digital para o jogo de Go.</span>
+    </div>
+  </footer>
 </body>
 </html>
