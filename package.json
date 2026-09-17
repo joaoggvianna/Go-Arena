@@ -1,0 +1,10 @@
+{
+  "name": "go-arena",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Go Arena — landing page e MVP 1 do jogo de Go 9x9 local.",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}
