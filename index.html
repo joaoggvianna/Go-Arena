@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Go Arena — uma proposta de plataforma online para jogar, estudar e competir no jogo de Go."
+    content="Go Arena — uma plataforma em desenvolvimento para jogar, estudar e competir em Go."
   />
-  <title>Go Arena — Jogue com intenção</title>
+  <title>Go Arena — Jogue Go sem distrações</title>
 
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -18,36 +19,37 @@
       <a class="brand" href="#inicio">Go Arena</a>
 
       <nav class="nav-links" aria-label="Navegação principal">
-        <a href="#ideia">A ideia</a>
-        <a href="#seguranca">Segurança</a>
-        <a href="#evolucao">Evolução</a>
+        <a class="nav-play" href="#jogar">Jogar</a>
+        <a href="#projeto">Projeto</a>
+        <a href="#roadmap">Roadmap</a>
       </nav>
-
-      <div class="nav-side"><a href="play.html">Jogar &rarr;</a></div>
     </div>
   </header>
 
   <main>
     <section class="shell hero" id="inicio">
       <div class="hero-copy">
-        <span class="kicker">Plataforma online para Go</span>
+        <span class="kicker">Go Arena / Em desenvolvimento</span>
 
         <h1>
-          Estratégia não precisa de <em>ruído.</em>
+          Jogue Go.<br />
+          <em>Sem distrações.</em>
         </h1>
 
         <p class="hero-intro">
-          Go Arena é uma proposta de plataforma para jogar, estudar e competir no Go
-          com uma experiência mais clara, contemporânea e acessível para novos jogadores.
+          Uma plataforma em desenvolvimento para jogar, estudar e competir em Go.
+          A primeira versão já está no tabuleiro.
         </p>
 
-        <div class="hero-meta">
-          <span>Começa simples: tabuleiro, regras e partidas.<br />Cresce com multiplayer, ranking e comunidade.</span>
+        <div class="hero-actions">
+          <a class="action action-primary" href="play.html">Jogar agora</a>
+          <a class="action action-secondary" href="#roadmap">Ver roadmap</a>
         </div>
+
+        <p class="hero-status">Disponível agora: partida local 9×9 para duas pessoas.</p>
       </div>
 
       <div class="board-stage">
-
         <div class="board" aria-label="Ilustração de um tabuleiro de Go">
           <div class="grid">
             <span class="stone black s1"></span>
@@ -64,234 +66,153 @@
       </div>
     </section>
 
-    <section class="idea" id="ideia">
+    <section class="lobby" id="jogar">
+      <div class="shell lobby-grid">
+        <div class="lobby-heading">
+          <span class="section-index">01 / Jogar</span>
+          <h2>Pronto para jogar?</h2>
+        </div>
+
+        <div class="lobby-entry">
+          <p class="lobby-intro">
+            Comece uma partida de Go 9×9 no navegador. Sem conta, sem espera:
+            duas pessoas, um dispositivo e o tabuleiro.
+          </p>
+
+          <dl class="match-details">
+            <div>
+              <dt>Formato</dt>
+              <dd>Go 9×9</dd>
+            </div>
+            <div>
+              <dt>Modo</dt>
+              <dd>Partida local</dd>
+            </div>
+            <div>
+              <dt>Jogadores</dt>
+              <dd>2 no mesmo dispositivo</dd>
+            </div>
+          </dl>
+
+          <a class="action action-light" href="play.html">Iniciar partida</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="current-state" id="estado">
       <div class="shell">
-        <div class="section-head">
-          <div class="section-index">01 / A ideia</div>
+        <div class="section-head lobby-section-head">
+          <div class="section-index">02 / Estado atual</div>
 
           <div>
-            <h2>Um jogo antigo, tratado como produto digital atual.</h2>
+            <h2>O essencial já está em jogo.</h2>
             <p class="section-summary">
-              O objetivo não é reinventar o Go. É criar uma experiência online organizada,
-              agradável e simples o suficiente para quem está começando — sem limitar quem
-              quiser competir e evoluir.
+              O primeiro ciclo do Go Arena entrega uma partida local completa.
+              As próximas etapas levam essa experiência para o ambiente online.
             </p>
           </div>
         </div>
 
-        <div class="idea-lines">
-          <article class="idea-row">
-            <div class="num">01</div>
-            <h3>Jogar</h3>
-            <p>
-              Um tabuleiro limpo, regras bem aplicadas e partidas sem distrações.
-              O produto começa pelo essencial.
-            </p>
+        <div class="state-grid">
+          <article class="state-column state-available">
+            <header class="state-title">
+              <span aria-hidden="true"></span>
+              <h3>Disponível agora</h3>
+            </header>
+            <ul>
+              <li>Tabuleiro 9×9</li>
+              <li>Partida local e alternância de turnos</li>
+              <li>Capturas e regra de Ko</li>
+              <li>Regra de suicídio</li>
+              <li>Passar, desistir e reiniciar</li>
+              <li>Pontuação ao final da partida</li>
+            </ul>
           </article>
 
-          <article class="idea-row">
-            <div class="num">02</div>
-            <h3>Competir</h3>
-            <p>
-              Multiplayer, matchmaking, rating e histórico entram depois,
-              quando a base do jogo já estiver sólida.
-            </p>
-          </article>
-
-          <article class="idea-row">
-            <div class="num">03</div>
-            <h3>Evoluir</h3>
-            <p>
-              Estatísticas, revisão de partidas e recursos educativos podem transformar
-              o site em um ambiente de estudo, não apenas de disputa.
-            </p>
+          <article class="state-column">
+            <header class="state-title">
+              <span aria-hidden="true"></span>
+              <h3>Em desenvolvimento</h3>
+            </header>
+            <ul>
+              <li>Contas de jogador</li>
+              <li>Histórico de partidas</li>
+              <li>Multiplayer online</li>
+              <li>Matchmaking</li>
+              <li>Rating e ranking</li>
+            </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="security" id="seguranca">
-      <div class="shell">
-        <div class="section-head">
-          <div class="section-index">02 / Arquitetura</div>
+    <section class="project" id="projeto">
+      <div class="shell project-grid">
+        <div>
+          <span class="section-index">03 / O projeto</span>
+          <h2>Uma arena construída pedra por pedra.</h2>
+        </div>
 
-          <div>
-            <h2>Os pilares do Well-Architected aplicados ao Go Arena.</h2>
-            <p class="section-summary">
-              A arquitetura do projeto será orientada pelos seis pilares apresentados no
-              AWS Well-Architected Framework: Segurança, Confiabilidade, Excelência operacional,
-              Eficiência de desempenho, Otimização de custos e Sustentabilidade.
-            </p>
+        <div class="project-copy">
+          <p class="project-lead">
+            Go Arena nasceu para transformar o Go em uma experiência online simples,
+            acessível e competitiva.
+          </p>
+          <p>
+            O projeto começa pelo que sustenta toda partida: um tabuleiro claro,
+            regras consistentes e interação direta. Backend, contas e multiplayer
+            entram em etapas, sem perder a calma e a precisão do próprio jogo.
+          </p>
+
+          <div class="project-principles" aria-label="Princípios do projeto">
+            <span>Simplicidade</span>
+            <span>Experiência de jogo</span>
+            <span>Evolução incremental</span>
           </div>
         </div>
-
-        <div class="security-list">
-          <article class="security-item">
-            <h3>Segurança</h3>
-
-            <div>
-              <div class="where">No Go Arena</div>
-              <p class="security-scope">
-                Contas, permissões, partidas, dados e infraestrutura.
-              </p>
-            </div>
-
-            <p>
-              O projeto adotará uma base de identidade com níveis de acesso e princípio do
-              menor privilégio; rastreabilidade por logs de login, partidas e ações
-              administrativas; proteção em múltiplas camadas; e avaliação periódica de riscos
-              e vulnerabilidades.
-            </p>
-          </article>
-
-          <article class="security-item">
-            <h3>Confiabilidade</h3>
-
-            <div>
-              <div class="where">No Go Arena</div>
-              <p class="security-scope">
-                Backend, banco de dados e partidas em andamento.
-              </p>
-            </div>
-
-            <p>
-              A aplicação deve se recuperar rapidamente de falhas e continuar funcionando
-              mesmo diante de problemas temporários. Backups, recuperação de estado,
-              monitoramento e redução de pontos únicos de falha serão considerados conforme
-              o projeto evoluir.
-            </p>
-          </article>
-
-          <article class="security-item">
-            <h3>Excelência operacional</h3>
-
-            <div>
-              <div class="where">No Go Arena</div>
-              <p class="security-scope">
-                Implantação, manutenção e acompanhamento do sistema.
-              </p>
-            </div>
-
-            <p>
-              O objetivo é manter um processo simples e repetível para implantar, atualizar
-              e operar a plataforma. Logs, monitoramento, versionamento no GitHub e
-              automatização gradual do deploy ajudam a detectar problemas e melhorar o
-              sistema continuamente.
-            </p>
-          </article>
-
-          <article class="security-item">
-            <h3>Eficiência de desempenho</h3>
-
-            <div>
-              <div class="where">No Go Arena</div>
-              <p class="security-scope">
-                API, partidas em tempo real e acesso aos dados.
-              </p>
-            </div>
-
-            <p>
-              Os recursos serão escolhidos de acordo com a demanda real. O foco é manter
-              respostas rápidas nas jogadas e no matchmaking, escolher a tecnologia de banco
-              adequada à carga de trabalho e utilizar cache apenas quando houver necessidade
-              comprovada.
-            </p>
-          </article>
-
-          <article class="security-item">
-            <h3>Otimização de custos</h3>
-
-            <div>
-              <div class="where">No Go Arena</div>
-              <p class="security-scope">
-                Hospedagem, banco de dados e serviços de infraestrutura.
-              </p>
-            </div>
-
-            <p>
-              O projeto começará com uma infraestrutura compatível com o MVP, evitando
-              recursos superdimensionados. Custos e utilização deverão ser monitorados,
-              recursos desnecessários evitados e serviços gerenciados considerados quando
-              fizerem sentido técnico e financeiro.
-            </p>
-          </article>
-
-          <article class="security-item">
-            <h3>Sustentabilidade</h3>
-
-            <div>
-              <div class="where">No Go Arena</div>
-              <p class="security-scope">
-                Uso de recursos computacionais e evolução da infraestrutura.
-              </p>
-            </div>
-
-            <p>
-              A aplicação buscará utilizar apenas os recursos necessários, evitando
-              processamento e infraestrutura ociosos. Conforme o sistema crescer, novas
-              opções de software e infraestrutura mais eficientes poderão ser adotadas para
-              reduzir desperdício computacional.
-            </p>
-          </article>
-        </div>
-
-        <p class="security-note">
-          Estes pontos são diretrizes arquiteturais para a evolução do produto. Nesta versão,
-          a landing page continua totalmente estática e não possui autenticação, banco de
-          dados, partidas online ou infraestrutura de produção.
-        </p>
       </div>
     </section>
 
-    <section class="roadmap" id="evolucao">
+    <section class="roadmap" id="roadmap">
       <div class="shell">
-        <div class="section-head">
-          <div class="section-index">03 / Evolução</div>
+        <div class="section-head roadmap-head">
+          <div class="section-index">04 / Roadmap</div>
 
           <div>
-            <h2>Construir pouco. Validar cedo. Crescer com propósito.</h2>
+            <h2>O caminho da arena.</h2>
             <p class="section-summary">
-              O projeto é dividido em etapas pequenas para que cada nova camada tenha
-              uma justificativa técnica e funcional.
+              Cada etapa amplia o jogo sem antecipar recursos que ainda não existem.
             </p>
           </div>
         </div>
 
-        <div class="timeline">
-          <article class="phase">
-            <span>01</span>
-            <h3>Tabuleiro</h3>
-            <p>Primeira versão jogável, com tabuleiro 9×9 e interação local.</p>
+        <div class="roadmap-track">
+          <article class="roadmap-step is-current">
+            <span class="roadmap-marker" aria-hidden="true"></span>
+            <p class="roadmap-time">Agora</p>
+            <h3>Jogo local</h3>
+            <p>Partida 9×9 com regras essenciais e pontuação.</p>
           </article>
 
-          <article class="phase">
-            <span>02</span>
-            <h3>Regras</h3>
-            <p>Implementação das regras essenciais: captura, Ko, passagem de turno e pontuação.</p>
+          <article class="roadmap-step">
+            <span class="roadmap-marker" aria-hidden="true"></span>
+            <p class="roadmap-time">Próximo</p>
+            <h3>Identidade e conexão</h3>
+            <p>Contas, histórico e partidas multiplayer.</p>
           </article>
 
-          <article class="phase">
-            <span>03</span>
-            <h3>Contas</h3>
-            <p>Cadastro, autenticação, perfis e armazenamento do histórico de partidas.</p>
-          </article>
-
-          <article class="phase">
-            <span>04</span>
-            <h3>Multiplayer</h3>
-            <p>Partidas entre jogadores com sincronização do tabuleiro em tempo real.</p>
-          </article>
-
-          <article class="phase">
-            <span>05</span>
+          <article class="roadmap-step">
+            <span class="roadmap-marker" aria-hidden="true"></span>
+            <p class="roadmap-time">Depois</p>
             <h3>Competição</h3>
-            <p>Matchmaking, sistema de rating e rankings para partidas competitivas.</p>
+            <p>Matchmaking, rating e ranking entre jogadores.</p>
           </article>
 
-          <article class="phase">
-            <span>06</span>
-            <h3>Ecossistema</h3>
-            <p>Recursos sociais e de evolução: estudo de partidas, torneios, amigos e espectadores.</p>
+          <article class="roadmap-step">
+            <span class="roadmap-marker" aria-hidden="true"></span>
+            <p class="roadmap-time">Futuro</p>
+            <h3>Comunidade</h3>
+            <p>Torneios, amigos, espectadores e recursos de IA.</p>
           </article>
         </div>
       </div>
@@ -299,16 +220,15 @@
 
     <section class="closing">
       <div class="shell closing-grid">
-        <h2>
-          O objetivo é simples:<br />
-          fazer uma boa jogada <span>por vez.</span>
-        </h2>
+        <div>
+          <span class="section-index">Sua vez</span>
+          <h2>O tabuleiro<br />está pronto.</h2>
+        </div>
 
-        <aside>
-          Go Arena é um projeto conceitual de software e portfólio.
-          A proposta atual prioriza clareza de produto, arquitetura incremental
-          e fundamentos de segurança desde o início.
-        </aside>
+        <div class="closing-action">
+          <p>Comece uma partida local e conheça a primeira versão do Go Arena.</p>
+          <a class="action action-primary" href="play.html">Jogar agora</a>
+        </div>
       </div>
     </section>
   </main>
@@ -316,7 +236,7 @@
   <footer>
     <div class="shell footer-row">
       <span>Go Arena</span>
-      <span>Conceito de produto digital para o jogo de Go.</span>
+      <span>Jogar. Estudar. Competir.</span>
     </div>
   </footer>
 </body>
