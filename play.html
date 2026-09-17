@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Go Arena — jogue uma partida local de Go 9x9 no navegador, dois jogadores no mesmo dispositivo."
+  />
+  <title>Go Arena — Jogar</title>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="shell nav">
+      <a class="brand" href="index.html">Go Arena</a>
+
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="index.html#ideia">A ideia</a>
+        <a href="index.html#seguranca">Segurança</a>
+        <a href="index.html#evolucao">Evolução</a>
+      </nav>
+
+      <div class="nav-side"><a href="index.html">&larr; Voltar ao início</a></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="shell play-shell" id="jogo">
+      <div class="section-head play-head">
+        <div class="section-index">MVP 1 / Go 9×9</div>
+
+        <div>
+          <h2>Uma partida local, pedra por pedra.</h2>
+          <p class="section-summary">
+            Dois jogadores revezam no mesmo navegador. Preto começa. Passem duas vezes
+            seguidas para encerrar a partida por pontuação, ou desistam a qualquer momento.
+          </p>
+        </div>
+      </div>
+
+      <div class="play-layout">
+        <div class="board-panel">
+          <div id="board" class="play-board" role="grid" aria-label="Tabuleiro de Go 9x9"></div>
+        </div>
+
+        <aside class="play-sidebar">
+          <div class="status-card">
+            <div class="status-row">
+              <span class="status-label">Vez de</span>
+              <span id="current-player" class="status-value">Preto</span>
+            </div>
+            <div class="status-row">
+              <span class="status-label">Status</span>
+              <span id="game-status" class="status-value">Em andamento</span>
+            </div>
+          </div>
+
+          <div class="captures-card">
+            <div class="capture-row">
+              <span class="capture-dot black" aria-hidden="true"></span>
+              <span>Capturas de Preto</span>
+              <strong id="captured-black">0</strong>
+            </div>
+            <div class="capture-row">
+              <span class="capture-dot white" aria-hidden="true"></span>
+              <span>Capturas de Branco</span>
+              <strong id="captured-white">0</strong>
+            </div>
+          </div>
+
+          <div class="controls-card">
+            <button id="btn-pass" type="button" class="btn btn-secondary">Passar</button>
+            <button id="btn-resign" type="button" class="btn btn-secondary">Desistir</button>
+            <button id="btn-restart" type="button" class="btn btn-primary">Reiniciar partida</button>
+          </div>
+
+          <p id="message" class="message-card" role="status" aria-live="polite"></p>
+
+          <div id="result" class="result-card" hidden></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row">
+      <span>Go Arena</span>
+      <span>MVP 1 — tabuleiro 9×9 local, sem contas ou backend.</span>
+    </div>
+  </footer>
+
+  <script type="module" src="js/ui.js"></script>
+</body>
+</html>
