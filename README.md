@@ -1,4 +1,4 @@
-# Go Arena
+# Go-Arena
 
 Go Arena é um projeto conceitual de produto digital para o jogo de Go: uma landing page
 que apresenta a proposta e, a partir do MVP 1, uma primeira versão jogável do jogo em si.
